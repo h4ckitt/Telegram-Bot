@@ -1,0 +1,15 @@
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/TBot.exe
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/TBot.pdb
+/home/dharmy/RiderProjects/TBot/TBot/obj/Debug/TBot.csprojAssemblyReference.cache
+/home/dharmy/RiderProjects/TBot/TBot/obj/Debug/TBot.exe
+/home/dharmy/RiderProjects/TBot/TBot/obj/Debug/TBot.pdb
+/home/dharmy/RiderProjects/TBot/TBot/obj/Debug/TBot.exe.config
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/TBot.exe.config
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/Newtonsoft.Json.dll
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/Telegram.Bot.dll
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/Newtonsoft.Json.xml
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/Telegram.Bot.xml
+/home/dharmy/RiderProjects/TBot/TBot/obj/Debug/TBot.csproj.CopyComplete
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/RestSharp.dll
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/RestSharp.xml
+/home/dharmy/RiderProjects/TBot/TBot/bin/Debug/Json.Net.dll
