@@ -16,6 +16,7 @@ namespace TBot
                     InlineKeyboardButton.WithCallbackData("Urban Dictionary","urban"),
                     InlineKeyboardButton.WithCallbackData("Oxford Dictionary", "oxford"), 
                 }
+                
             });
             if (UserManager.GetDictionary(person) != "")
             {

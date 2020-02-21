@@ -16,7 +16,7 @@ namespace TBot
                 while (true)
                 {
                     int x = word.IndexOf(s);
-                    if (x.Equals(-1) == false)
+                    if (!x.Equals(-1))
                     {    
                         string before = word.Substring(0, x);
                         string after = word.Substring(x + 1);
@@ -28,37 +28,26 @@ namespace TBot
 
             try
             {
+               // Console.WriteLine(word);
+                string example = "";
                 string definition = "";
-                word = word.Replace("\"", string.Empty);
-                var defs = word.Split(':');
-                for (int i = 0; i < defs.Length; i++)
-                {
-                    if (defs[i].Contains("definition"))
-                    {
-                        for (int j = i+1; j < defs.Length-i; j++)
-                        {
-                            if (!defs[j].Equals("permalink"))
-                            {
-                                definition += defs[j];
-                                continue;
-                            }
-                            break;
-                        }
-                        break;
-                    }
-                }
-                definition = definition.Substring(0, definition.IndexOf(",permalink", StringComparison.Ordinal));
-                string[] escapeChars = {@"\n", @"\r", @"\"};
+                //word = word.Replace("\"", string.Empty);
+                var defs = word.Split(new[] {"\",\""},StringSplitOptions.None);
+                //Console.WriteLine(String.Join(",",defs));
+                definition = defs[0];
+                definition = definition.Substring(definition.IndexOf("definition")+13);
+                definition = definition.Replace(@"\n", "\n").Replace(@"\r", "\r");
+                string[] escapeChars = {@"\"};
                 foreach (string s in escapeChars)
                 {
                     definition = definition.Replace(s, String.Empty);
                 }
 
-                return "Definition: " + Regex.Replace(definition, " {2,}", "");
+                return "Definition: \n\n" + Regex.Replace(definition, " {2,}", "")+"\n\nExample:\n"+Regex.Replace(example," {2,}","");
             }
-            catch
+            catch (Exception e)    
             {
-                return "Something Went Wrong While Processing Your Request, The Developer Has Been Notified And Is Working On It";
+                return "Something Went Wrong While Processing Your Request, The Developer Has Been Notified And Is Working On It" + e.Message;
             }
         }
 

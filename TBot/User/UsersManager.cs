@@ -73,8 +73,8 @@ namespace TBot
              return false;
          }
      }
-     
-        public static bool SaveSession()
+
+     private static bool SaveSession()
         {
             StreamWriter save = new StreamWriter("saveConfig.txt");
             try
@@ -93,7 +93,7 @@ namespace TBot
             return true;
         }
 
-        public static bool Load(string filename)
+        internal static bool Load(string filename)
         {
             if (!File.Exists("saveConfig.txt"))
             {

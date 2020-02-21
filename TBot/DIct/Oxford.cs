@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using RestSharp;
-using System.Threading;
+
 
 namespace TBot
 {
@@ -68,6 +67,7 @@ namespace TBot
             Console.WriteLine("Part Part Processed: ");*/
             //json = json.Replace("definitions", "definition");
             //Thread.Sleep(50000);
+            definition=definition.Replace(@"\n","\n").Replace(@"\r","\r");
             return "Definition: "+Regex.Replace(definition," {2,}","");
         }
         
