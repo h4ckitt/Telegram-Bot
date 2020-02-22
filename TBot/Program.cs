@@ -3,6 +3,7 @@ using Telegram.Bot;
 using Telegram.Bot.Args;
 using System.Threading;
 using System.Threading.Tasks;
+using Telegram.Bot.Types.Enums;
 
 namespace TBot
 {
@@ -30,22 +31,27 @@ namespace TBot
             {
                 UserManager.AddUser(tempUser);
             }
-            
-            Task<string> task = new Task<string>(()=>Commands.Handle(e));
-            task.Start();
-            string result = await task;
-            if (e.Message.Text != null && result != "")
+
+            if (e.Message.Type.Equals(MessageType.Text))
             {
-                //Console.WriteLine($"Received a text message in chat {e.Message.Chat.Id}");
-                await Bot.SendTextMessageAsync(e.Message.Chat, text: result);
-                /*Message message = await bot.SendTextMessageAsync(e.Message.Chat, "Trying *all* `parameters` ~of~ _Markdown_",ParseMode.Markdown,disableNotification:true, replyMarkup: new InlineKeyboardMarkup(InlineKeyboardButton.WithUrl("Check SendMessage Method",    "https://core.telegram.org/bots/api#sendmessage"
-                //)));
-                Console.WriteLine($"{message.From.FirstName} sent Message {message.MessageId} to chat {message.Chat.Id} at {message.Date}");
-                //Console.WriteLine($"It Is A Reply To message {message.ReplyToMessage.MessageId} and has {message.Entities.Length} message entities");
-                //Message msg1 = await bot.SendStickerAsync(e.Message.Chat,
-                    sticker: "https://github.com/TelegramBots/book/raw/master/src/docs/sticker-fred.webp"
-                );
-                Message msg2 = await bot.SendStickerAsync(e.Message.Chat,sticker:msg1.Sticker.FileId);*/
+                Task<string> task = new Task<string>(() => Commands.Handle(e));
+                task.Start();
+                string result = await task;
+
+
+                if (e.Message.Text != null && result != "" && e.Message.Type == MessageType.Text)
+                {
+                    //Console.WriteLine($"Received a text message in chat {e.Message.Chat.Id}");
+                    await Bot.SendTextMessageAsync(e.Message.Chat, text: result);
+                    /*Message message = await bot.SendTextMessageAsync(e.Message.Chat, "Trying *all* `parameters` ~of~ _Markdown_",ParseMode.Markdown,disableNotification:true, replyMarkup: new InlineKeyboardMarkup(InlineKeyboardButton.WithUrl("Check SendMessage Method",    "https://core.telegram.org/bots/api#sendmessage"
+                    //)));
+                    Console.WriteLine($"{message.From.FirstName} sent Message {message.MessageId} to chat {message.Chat.Id} at {message.Date}");
+                    //Console.WriteLine($"It Is A Reply To message {message.ReplyToMessage.MessageId} and has {message.Entities.Length} message entities");
+                    //Message msg1 = await bot.SendStickerAsync(e.Message.Chat,
+                        sticker: "https://github.com/TelegramBots/book/raw/master/src/docs/sticker-fred.webp"
+                    );
+                    Message msg2 = await bot.SendStickerAsync(e.Message.Chat,sticker:msg1.Sticker.FileId);*/
+                }
             }
         }
     }

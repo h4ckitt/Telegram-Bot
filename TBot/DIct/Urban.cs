@@ -1,11 +1,17 @@
 using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 using RestSharp;
+using RestSharp.Extensions;
 
 namespace TBot
 {
     public static class Urban
     {
+
+        
        private static string Format(string word)
         {
             if (word.IndexOf("definition").Equals(-1))
@@ -30,20 +36,26 @@ namespace TBot
             {
                // Console.WriteLine(word);
                 string example = "";
-                string definition = "";
+                //string definition = "";
                 //word = word.Replace("\"", string.Empty);
                 var defs = word.Split(new[] {"\",\""},StringSplitOptions.None);
                 //Console.WriteLine(String.Join(",",defs));
-                definition = defs[0];
-                definition = definition.Substring(definition.IndexOf("definition")+13);
-                definition = definition.Replace(@"\n", "\n").Replace(@"\r", "\r");
-                string[] escapeChars = {@"\"};
-                foreach (string s in escapeChars)
+                StringBuilder defintion = new StringBuilder(defs[0]);
+                defintion.Remove(0, 21);
+                //definition = definition.Substring(definition.IndexOf("definition")+13);
+                Dictionary<string,string> replacer = new Dictionary<string, string>
                 {
-                    definition = definition.Replace(s, String.Empty);
+                    {@"\n","\n"},
+                    {@"\r","\r"},
+                    {@"\",string.Empty}
+                };
+                
+                foreach (string replacement in replacer.Keys)
+                {
+                    defintion.Replace(replacement, replacer[replacement]);
                 }
 
-                return "Definition: \n\n" + Regex.Replace(definition, " {2,}", "")+"\n\nExample:\n"+Regex.Replace(example," {2,}","");
+                return "Definition: \n\n" + Regex.Replace(defintion.ToString(), " {2,}", "")+"\n\nExample:\n"+Regex.Replace(example," {2,}","");
             }
             catch (Exception e)    
             {

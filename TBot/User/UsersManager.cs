@@ -36,6 +36,8 @@ namespace TBot
 
      public static string GetDictionary(User user)
      {
+         if (!UsersList.ContainsKey(user.GetId()))
+             return "";
          return UsersList[user.GetId()];
      }
 
